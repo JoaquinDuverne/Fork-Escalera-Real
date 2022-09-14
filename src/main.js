@@ -1,6 +1,12 @@
-import Phaser from 'phaser'
-
-import HelloWorldScene from './scenes/HelloWorldScene'
+import Phaser from "phaser";
+import {Preload} from "./scenes/Preload.js";
+import {MainMenu} from "./scenes/MainMenu.js";
+import {LevelSelect} from "./scenes/LevelSelect.js";
+import {Level1} from "./scenes/Level1";
+import {Victoria} from "./scenes/Victoria";
+import {Derrota} from "./scenes/Derrota";
+import {Retry} from "./scenes/Retry";
+import HelloWorldScene from "./scenes/HelloWorldScene";
 
 const config = {
 	type: Phaser.AUTO,
@@ -25,7 +31,7 @@ const config = {
 			debug: false,
 		}
 	},
-	scene: [HelloWorldScene]
+	scene: [HelloWorldScene, Preload, MainMenu, LevelSelect, Level1, Victoria, Derrota, Retry]
 }
 
 export default new Phaser.Game(config)
