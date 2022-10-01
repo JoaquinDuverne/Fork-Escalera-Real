@@ -6,18 +6,18 @@ import {Level1} from "./scenes/Level1";
 import {Victoria} from "./scenes/Victoria";
 import {Derrota} from "./scenes/Derrota";
 import {Retry} from "./scenes/Retry";
-import HelloWorldScene from "./scenes/HelloWorldScene";
+import NivelMago from "./scenes/NivelMago";
 
 const config = {
 	type: Phaser.AUTO,
-	width: 800,
-	height: 600,
+	width: 1020,
+	height: 660,
 	scale: {
 		mode: Phaser.Scale.FIT,
 		autoCenter: Phaser.Scale.CENTER_BOTH,
 		min: {
-			width: 800,
-			height: 600,
+			width: 1020,
+			height: 660,
 		},
 		max: {
 			width: 1600,
@@ -31,7 +31,7 @@ const config = {
 			debug: false,
 		}
 	},
-	scene: [HelloWorldScene, Preload, MainMenu, LevelSelect, Level1, Victoria, Derrota, Retry]
+	scene: [Preload, MainMenu, NivelMago, LevelSelect, Level1, Victoria, Derrota, Retry]
 }
 
 export default new Phaser.Game(config)
