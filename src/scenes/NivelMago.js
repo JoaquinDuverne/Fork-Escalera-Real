@@ -50,12 +50,11 @@ export default class NivelMago extends Phaser.Scene
 		this.add.image(this.cameras.main.centerX, this.cameras.main.centerY, 'escalera_bg').setScale(1.1);
 
 		this.add.image(this.cameras.main.centerX, this.cameras.main.centerY, 'level1_bg').setScale(1);
-		this.add.image(950, 510, 'libro').setScale(0.8);
 				
-		let Libro = this.add.image(910, 625, 'escalera_btnsalir2', 0).setScale(0.8);
-		Libro.setInteractive();
+		let Salir = this.add.image(910, 625, 'escalera_btnsalir2', 0).setScale(0.8);
+		Salir.setInteractive();
 							
-		Libro.on("pointerdown", (pointer, localX, localY) => {
+		Salir.on("pointerdown", (pointer, localX, localY) => {
 		this.scene.start("MainMenu");}); 
 		
 		
@@ -89,6 +88,11 @@ export default class NivelMago extends Phaser.Scene
 		let cantidadmazo = 51
 
 		//VIDAS
+
+		let barradevida = this.add.image(200, 50, 'rellenobarra1').setScale(0.5)
+
+		let barradevida2 = this.add.image(800, 50, 'rellenobarra1').setScale(0.5)
+
         barravida2 = this.add.text(698, 50 ,vidaenemigo.toString(), {
             fontSize: "32px",
         })
@@ -144,44 +148,23 @@ export default class NivelMago extends Phaser.Scene
 
 		const carta1 = new Cartas (nrocarta, palocarta, damagecarta, curacarta, 150, 620)
 		carta1.sprite = this.add.image (carta1.x, carta1.y, 'cards', cartarandom).setScale(0.4).setInteractive();
-		this.input.setDraggable(carta1.sprite);
-		this.input.on("dragstart", function(pointer, gameObject) {
-            this.tweens.add({
-                targets: gameObject,
-                angle: 0,
-                x: pointer.x,
-                y: pointer.y,
-                displayWidth: gameOptions.cardWidth,
-                displayHeight: gameOptions.cardHeight,
-                duration: 150
-            });
 
-        }, this);
-        this.input.on("drag", function(pointer, gameObject, dragX, dragY){
-            gameObject.x = pointer.x;
-            gameObject.y = pointer.y ;
-        });
-        this.input.on("dragend", function(pointer, gameObject, dropped){
-            this.tweens.add({
-                targets: gameObject,
-                x: carta1.x,
-                y: carta1.y,
-                displayWidth: gameOptions.cardWidth / 2,
-                displayHeight: gameOptions.cardHeight / 2,
-                duration: 150
-            });
-        }, this);
-
-		/*carta1.sprite.on("pointerdown", (pointer, localX, localY) => {
+		carta1.sprite.on("pointerdown", (pointer, localX, localY) => {
 		vidaenemigo = vidaenemigo - carta1.damage
 		vidajugador = vidajugador + carta1.cura
+
+		barradevida2.displayWidth = barradevida2.displayWidth - carta1.damage
+		barradevida2.x = barradevida2.x +carta1.damage/2
+
+		barradevida.displayWidth = barradevida.displayWidth + carta1.cura
+		barradevida.x = barradevida.x +carta1.cura/2
 
 		barravida1.setText(vidajugador.toString());
 		barravida2.setText(vidaenemigo.toString());
 
 		carta1.sprite.destroy()
 		estadocarta1 = 0
-		})*/
+		})
 
 		//CARTA 2
 		cartarandom = mazo[Phaser.Math.Between(0,cantidadmazo)]
@@ -197,6 +180,12 @@ export default class NivelMago extends Phaser.Scene
 		carta2.sprite.on("pointerdown", (pointer, localX, localY) => {
 			vidaenemigo = vidaenemigo - carta2.damage
 			vidajugador = vidajugador + carta2.cura
+
+			barradevida2.displayWidth = barradevida2.displayWidth - carta2.damage
+			barradevida2.x = barradevida2.x +carta2.damage/2
+	
+			barradevida.displayWidth = barradevida.displayWidth + carta2.cura
+			barradevida.x = barradevida.x +carta2.cura/2
 	
 			barravida1.setText(vidajugador.toString());
 			barravida2.setText(vidaenemigo.toString());
@@ -219,6 +208,12 @@ export default class NivelMago extends Phaser.Scene
 		carta3.sprite.on("pointerdown", (pointer, localX, localY) => {
 			vidaenemigo = vidaenemigo - carta3.damage
 			vidajugador = vidajugador + carta3.cura
+
+			barradevida2.displayWidth = barradevida2.displayWidth - carta3.damage
+			barradevida2.x = barradevida2.x +carta3.damage/2
+	
+			barradevida.displayWidth = barradevida.displayWidth + carta3.cura
+			barradevida.x = barradevida.x +carta3.cura/2
 	
 			barravida1.setText(vidajugador.toString());
 			barravida2.setText(vidaenemigo.toString());
@@ -241,6 +236,12 @@ export default class NivelMago extends Phaser.Scene
 		carta4.sprite.on("pointerdown", (pointer, localX, localY) => {
 			vidaenemigo = vidaenemigo - carta4.damage
 			vidajugador = vidajugador + carta4.cura
+
+			barradevida2.displayWidth = barradevida2.displayWidth - carta4.damage
+			barradevida2.x = barradevida2.x +carta4.damage/2
+	
+			barradevida.displayWidth = barradevida.displayWidth + carta4.cura
+			barradevida.x = barradevida.x +carta4.cura/2
 	
 			barravida1.setText(vidajugador.toString());
 			barravida2.setText(vidaenemigo.toString());
@@ -263,6 +264,12 @@ export default class NivelMago extends Phaser.Scene
 		carta5.sprite.on("pointerdown", (pointer, localX, localY) => {
 			vidaenemigo = vidaenemigo - carta5.damage
 			vidajugador = vidajugador + carta5.cura
+
+			barradevida2.displayWidth = barradevida2.displayWidth - carta5.damage
+			barradevida2.x = barradevida2.x +carta5.damage/2
+	
+			barradevida.displayWidth = barradevida.displayWidth + carta5.cura
+			barradevida.x = barradevida.x +carta5.cura/2
 	
 			barravida1.setText(vidajugador.toString());
 			barravida2.setText(vidaenemigo.toString());
@@ -293,6 +300,12 @@ export default class NivelMago extends Phaser.Scene
 			carta1.sprite.on("pointerdown", (pointer, localX, localY) => {
 				vidaenemigo = vidaenemigo - carta1.damage
 				vidajugador = vidajugador + carta1.cura
+
+				barradevida2.displayWidth = barradevida2.displayWidth - carta1.damage
+				barradevida2.x = barradevida2.x +carta1.damage/2
+		
+				barradevida.displayWidth = barradevida.displayWidth + carta1.cura
+				barradevida.x = barradevida.x +carta1.cura/2
 		
 				barravida1.setText(vidajugador.toString());
 				barravida2.setText(vidaenemigo.toString());
@@ -321,6 +334,12 @@ export default class NivelMago extends Phaser.Scene
 			carta2.sprite.on("pointerdown", (pointer, localX, localY) => {
 				vidaenemigo = vidaenemigo - carta2.damage
 				vidajugador = vidajugador + carta2.cura
+
+				barradevida2.displayWidth = barradevida2.displayWidth - carta2.damage
+				barradevida2.x = barradevida2.x +carta2.damage/2
+		
+				barradevida.displayWidth = barradevida.displayWidth + carta2.cura
+				barradevida.x = barradevida.x +carta2.cura/2
 	
 				barravida1.setText(vidajugador.toString());
 				barravida2.setText(vidaenemigo.toString());
@@ -349,6 +368,12 @@ export default class NivelMago extends Phaser.Scene
 			carta3.sprite.on("pointerdown", (pointer, localX, localY) => {
 			vidaenemigo = vidaenemigo - carta3.damage
 			vidajugador = vidajugador + carta3.cura
+
+			barradevida2.displayWidth = barradevida2.displayWidth - carta3.damage
+			barradevida2.x = barradevida2.x +carta3.damage/2
+	
+			barradevida.displayWidth = barradevida.displayWidth + carta3.cura
+			barradevida.x = barradevida.x +carta3.cura/2
 	
 			barravida1.setText(vidajugador.toString());
 			barravida2.setText(vidaenemigo.toString());
@@ -377,6 +402,12 @@ export default class NivelMago extends Phaser.Scene
 			carta4.sprite.on("pointerdown", (pointer, localX, localY) => {
 			vidaenemigo = vidaenemigo - carta4.damage
 			vidajugador = vidajugador + carta4.cura
+
+			barradevida2.displayWidth = barradevida2.displayWidth - carta4.damage
+			barradevida2.x = barradevida2.x +carta4.damage/2
+	
+			barradevida.displayWidth = barradevida.displayWidth + carta4.cura
+			barradevida.x = barradevida.x +carta4.cura/2
 	
 			barravida1.setText(vidajugador.toString());
 			barravida2.setText(vidaenemigo.toString());
@@ -405,6 +436,12 @@ export default class NivelMago extends Phaser.Scene
 			carta5.sprite.on("pointerdown", (pointer, localX, localY) => {
 			vidaenemigo = vidaenemigo - carta5.damage
 			vidajugador = vidajugador + carta5.cura
+
+			barradevida2.displayWidth = barradevida2.displayWidth - carta5.damage
+			barradevida2.x = barradevida2.x +carta5.damage/2
+	
+			barradevida.displayWidth = barradevida.displayWidth + carta5.cura
+			barradevida.x = barradevida.x +carta5.cura/2
 		
 			barravida1.setText(vidajugador.toString());
 			barravida2.setText(vidaenemigo.toString());
@@ -421,6 +458,21 @@ export default class NivelMago extends Phaser.Scene
 		console.log (cantidadmazo)
 
 		})
+
+		let Black = this.add.image(this.cameras.main.centerX, 2000, 'black').setScale(0.4);
+		let Tuto = this.add.image(this.cameras.main.centerX, 1000, 'tutorial').setScale(0.25);
+
+		let Libro = this.add.image(950, 510, 'libro').setScale(0.8);
+		Libro.setInteractive();
+		Libro.on("pointerdown", (pointer, localX, localY) => {
+		if (Tuto.y == 1000) {
+			Tuto.y = this.cameras.main.centerY
+			Black.y = this.cameras.main.centerY
+		} else {
+		Tuto.y = 1000
+		Black.y = 2000
+		}
+		}); 
 	
 	}
 }

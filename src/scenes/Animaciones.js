@@ -1,5 +1,6 @@
 class Animaciones {
 	constructor () {
+		
 
 	}
 	

@@ -10,6 +10,10 @@ export class Preload extends Phaser.Scene
 	{
 
 			this.load.image("botonturno", "assets/phaser_logo.png");
+			this.load.image("tutorial", "assets/tutorial.png");
+			this.load.image("rellenobarra1", "assets/vida_relleno.png");
+
+			this.load.image("black", "assets/black.png");
 
 			this.load.spritesheet("cards", 'assets/cards.png', {
 				frameWidth: 325,
