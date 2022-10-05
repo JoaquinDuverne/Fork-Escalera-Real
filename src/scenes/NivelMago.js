@@ -138,152 +138,47 @@ export default class NivelMago extends Phaser.Scene
 		}
 		}
 
-		//CARTA 1
-		cartarandom = mazo[Phaser.Math.Between(1,cantidadmazo)]
-		posicion = mazo.indexOf(cartarandom)
-		mazo.splice(posicion, 1)
-		cantidadmazo = cantidadmazo- 1
+		const cartas = [];
 
-		crearCarta(cartarandom)
+		for (let i = 0; i < 5; i++) {
+			const cartarandom = mazo[Phaser.Math.Between(1,cantidadmazo)]
+			const posicion = mazo.indexOf(cartarandom)
+			mazo.splice(posicion, 1)
+			cantidadmazo = cantidadmazo- 1
 
-		const carta1 = new Cartas (nrocarta, palocarta, damagecarta, curacarta, 150, 620)
-		carta1.sprite = this.add.image (carta1.x, carta1.y, 'cards', cartarandom).setScale(0.4).setInteractive();
+			crearCarta(cartarandom)
 
-		carta1.sprite.on("pointerdown", (pointer, localX, localY) => {
-		vidaenemigo = vidaenemigo - carta1.damage
-		vidajugador = vidajugador + carta1.cura
+			const carta = new Cartas (1, nrocarta, palocarta, damagecarta, curacarta, 150 * (i+1), 620)
+			carta.sprite = this.add.image (carta.x, carta.y, 'cards', cartarandom).setScale(0.4).setInteractive();
 
-		barradevida2.displayWidth = barradevida2.displayWidth - carta1.damage
-		barradevida2.x = barradevida2.x +carta1.damage/2
+			carta.sprite.on("pointerdown", (pointer, localX, localY) => {
+			vidaenemigo = vidaenemigo - carta.damage
+			vidajugador = vidajugador + carta.cura
 
-		barradevida.displayWidth = barradevida.displayWidth + carta1.cura
-		barradevida.x = barradevida.x +carta1.cura/2
+			barradevida2.displayWidth = barradevida2.displayWidth - carta.damage
+			barradevida2.x = barradevida2.x +carta.damage/2
 
-		barravida1.setText(vidajugador.toString());
-		barravida2.setText(vidaenemigo.toString());
+			barradevida.displayWidth = barradevida.displayWidth + carta.cura
+			barradevida.x = barradevida.x +carta.cura/2
 
-		carta1.sprite.destroy()
-		estadocarta1 = 0
+			barravida1.setText(vidajugador.toString());
+			barravida2.setText(vidaenemigo.toString());
+
+			carta.sprite.destroy()
+			carta.estado = 0
 		})
+		cartas.push(carta);
+			
+		}
 
-		//CARTA 2
-		cartarandom = mazo[Phaser.Math.Between(0,cantidadmazo)]
-		posicion = mazo.indexOf(cartarandom)
-		mazo.splice(posicion, 1)
-		cantidadmazo = cantidadmazo- 1
-
-		crearCarta(cartarandom)
-
-		const carta2 = new Cartas (nrocarta, palocarta, damagecarta, curacarta, 300, 620)
-		carta2.sprite = this.add.image (carta2.x, carta2.y, 'cards', cartarandom).setScale(0.4).setInteractive();
-
-		carta2.sprite.on("pointerdown", (pointer, localX, localY) => {
-			vidaenemigo = vidaenemigo - carta2.damage
-			vidajugador = vidajugador + carta2.cura
-
-			barradevida2.displayWidth = barradevida2.displayWidth - carta2.damage
-			barradevida2.x = barradevida2.x +carta2.damage/2
-	
-			barradevida.displayWidth = barradevida.displayWidth + carta2.cura
-			barradevida.x = barradevida.x +carta2.cura/2
-	
-			barravida1.setText(vidajugador.toString());
-			barravida2.setText(vidaenemigo.toString());
-
-			carta2.sprite.destroy()
-			estadocarta2 = 0
-			})
-	
-		//CARTA 3
-		cartarandom = mazo[Phaser.Math.Between(0,cantidadmazo)]
-		posicion = mazo.indexOf(cartarandom)
-		mazo.splice(posicion, 1)
-		cantidadmazo = cantidadmazo- 1
-
-		crearCarta(cartarandom)
-
-		const carta3 = new Cartas (nrocarta, palocarta, damagecarta, curacarta, 450, 620)
-		carta3.sprite = this.add.image (carta3.x, carta3.y, 'cards', cartarandom).setScale(0.4).setInteractive();
 		
-		carta3.sprite.on("pointerdown", (pointer, localX, localY) => {
-			vidaenemigo = vidaenemigo - carta3.damage
-			vidajugador = vidajugador + carta3.cura
-
-			barradevida2.displayWidth = barradevida2.displayWidth - carta3.damage
-			barradevida2.x = barradevida2.x +carta3.damage/2
-	
-			barradevida.displayWidth = barradevida.displayWidth + carta3.cura
-			barradevida.x = barradevida.x +carta3.cura/2
-	
-			barravida1.setText(vidajugador.toString());
-			barravida2.setText(vidaenemigo.toString());
-
-			carta3.sprite.destroy()
-			estadocarta3 = 0
-			})
-	
-		//CARTA 4 
-		cartarandom = mazo[Phaser.Math.Between(0,cantidadmazo)]
-		posicion = mazo.indexOf(cartarandom)
-		mazo.splice(posicion, 1)
-		cantidadmazo = cantidadmazo- 1
-
-		crearCarta(cartarandom)
-
-		const carta4 = new Cartas (nrocarta, palocarta, damagecarta, curacarta, 600, 620)
-		carta4.sprite = this.add.image (carta4.x, carta4.y, 'cards', cartarandom).setScale(0.4).setInteractive();
-		
-		carta4.sprite.on("pointerdown", (pointer, localX, localY) => {
-			vidaenemigo = vidaenemigo - carta4.damage
-			vidajugador = vidajugador + carta4.cura
-
-			barradevida2.displayWidth = barradevida2.displayWidth - carta4.damage
-			barradevida2.x = barradevida2.x +carta4.damage/2
-	
-			barradevida.displayWidth = barradevida.displayWidth + carta4.cura
-			barradevida.x = barradevida.x +carta4.cura/2
-	
-			barravida1.setText(vidajugador.toString());
-			barravida2.setText(vidaenemigo.toString());
-
-			carta4.sprite.destroy()
-			estadocarta4 = 0
-			})
-	
-		//CARTA 5
-		cartarandom = mazo[Phaser.Math.Between(0,cantidadmazo)]
-		posicion = mazo.indexOf(cartarandom)
-		mazo.splice(posicion, 1)
-		cantidadmazo = cantidadmazo- 1
-
-		crearCarta(cartarandom)
-
-		const carta5 = new Cartas (nrocarta, palocarta, damagecarta, curacarta, 750, 620)
-		carta5.sprite = this.add.image (carta5.x, carta5.y, 'cards', cartarandom).setScale(0.4).setInteractive();
-
-		carta5.sprite.on("pointerdown", (pointer, localX, localY) => {
-			vidaenemigo = vidaenemigo - carta5.damage
-			vidajugador = vidajugador + carta5.cura
-
-			barradevida2.displayWidth = barradevida2.displayWidth - carta5.damage
-			barradevida2.x = barradevida2.x +carta5.damage/2
-	
-			barradevida.displayWidth = barradevida.displayWidth + carta5.cura
-			barradevida.x = barradevida.x +carta5.cura/2
-	
-			barravida1.setText(vidajugador.toString());
-			barravida2.setText(vidaenemigo.toString());
-
-			carta5.sprite.destroy()
-			estadocarta5 = 0
-
-			})
 		
 		//ROBAR CARTAS NUEVAS
 		botonturno = this.add.image (800, 300, 'botonturno').setScale(0.3).setInteractive();
 		botonturno.on("pointerdown", (pointer, localX, localY) => {
 		
-		if (estadocarta1 == 0) {
+		for (let i = 0; i < 5; i++) {
+		if (cartas[i].estado == 0) {
 			cartarandom = mazo[Phaser.Math.Between(0,cantidadmazo)]
 			posicion = mazo.indexOf(cartarandom)
 			mazo.splice(posicion, 1)
@@ -291,168 +186,32 @@ export default class NivelMago extends Phaser.Scene
 	
 			crearCarta(cartarandom)
 
-			carta1.nro = nrocarta
-			carta1.palo = palocarta
-			carta1.damage = damagecarta
-			carta1.cura = curacarta
+			cartas[i].nro = nrocarta
+			cartas[i].palo = palocarta
+			cartas[i].damage = damagecarta
+			cartas[i].cura = curacarta
 
-			carta1.sprite = this.add.image (carta1.x, carta1.y, 'cards', cartarandom).setScale(0.4).setInteractive();
-			carta1.sprite.on("pointerdown", (pointer, localX, localY) => {
-				vidaenemigo = vidaenemigo - carta1.damage
-				vidajugador = vidajugador + carta1.cura
+			cartas[i].sprite = this.add.image (150 * (i+1), cartas[i].y, 'cards', cartarandom).setScale(0.4).setInteractive();
+			cartas[i].sprite.on("pointerdown", (pointer, localX, localY) => {
+				vidaenemigo = vidaenemigo - cartas[i].damage
+				vidajugador = vidajugador + cartas[i].cura
 
-				barradevida2.displayWidth = barradevida2.displayWidth - carta1.damage
-				barradevida2.x = barradevida2.x +carta1.damage/2
+				barradevida2.displayWidth = barradevida2.displayWidth - cartas[i].damage
+				barradevida2.x = barradevida2.x +cartas[i].damage/2
 		
-				barradevida.displayWidth = barradevida.displayWidth + carta1.cura
-				barradevida.x = barradevida.x +carta1.cura/2
+				barradevida.displayWidth = barradevida.displayWidth + cartas[i].cura
+				barradevida.x = barradevida.x +cartas[i].cura/2
 		
 				barravida1.setText(vidajugador.toString());
 				barravida2.setText(vidaenemigo.toString());
 		
-				carta1.sprite.destroy()
-				estadocarta1 = 0
+				cartas[i].sprite.destroy()
+				cartas[i].estado = 0
 			})
-			estadocarta1 = 1
-		}
+			cartas[i].estado = 1
+		}}
 
-		if (estadocarta2 == 0) {
-			cartarandom = mazo[Phaser.Math.Between(0,cantidadmazo)]
-			posicion = mazo.indexOf(cartarandom)
-			mazo.splice(posicion, 1)
-			cantidadmazo = cantidadmazo- 1
-	
-			crearCarta(cartarandom)
 
-			carta2.nro = nrocarta
-			carta2.palo = palocarta
-			carta2.damage = damagecarta
-			carta2.cura = curacarta
-
-			carta2.sprite = this.add.image (carta2.x, carta2.y, 'cards', cartarandom).setScale(0.4).setInteractive();
-
-			carta2.sprite.on("pointerdown", (pointer, localX, localY) => {
-				vidaenemigo = vidaenemigo - carta2.damage
-				vidajugador = vidajugador + carta2.cura
-
-				barradevida2.displayWidth = barradevida2.displayWidth - carta2.damage
-				barradevida2.x = barradevida2.x +carta2.damage/2
-		
-				barradevida.displayWidth = barradevida.displayWidth + carta2.cura
-				barradevida.x = barradevida.x +carta2.cura/2
-	
-				barravida1.setText(vidajugador.toString());
-				barravida2.setText(vidaenemigo.toString());
-
-				carta2.sprite.destroy()
-				estadocarta2 = 0
-			})
-			estadocarta2 = 1
-		}
-
-		if (estadocarta3 == 0) {
-			cartarandom = mazo[Phaser.Math.Between(0,cantidadmazo)]
-			posicion = mazo.indexOf(cartarandom)
-			mazo.splice(posicion, 1)
-			cantidadmazo = cantidadmazo- 1
-	
-			crearCarta(cartarandom)
-
-			carta3.nro = nrocarta
-			carta3.palo = palocarta
-			carta3.damage = damagecarta
-			carta3.cura = curacarta
-
-			carta3.sprite = this.add.image (carta3.x, carta3.y, 'cards', cartarandom).setScale(0.4).setInteractive();
-		
-			carta3.sprite.on("pointerdown", (pointer, localX, localY) => {
-			vidaenemigo = vidaenemigo - carta3.damage
-			vidajugador = vidajugador + carta3.cura
-
-			barradevida2.displayWidth = barradevida2.displayWidth - carta3.damage
-			barradevida2.x = barradevida2.x +carta3.damage/2
-	
-			barradevida.displayWidth = barradevida.displayWidth + carta3.cura
-			barradevida.x = barradevida.x +carta3.cura/2
-	
-			barravida1.setText(vidajugador.toString());
-			barravida2.setText(vidaenemigo.toString());
-
-			carta3.sprite.destroy()
-			estadocarta3 = 0
-			})
-			estadocarta3 = 1
-		}
-		
-		if (estadocarta4 == 0) {
-			cartarandom = mazo[Phaser.Math.Between(0,cantidadmazo)]
-			posicion = mazo.indexOf(cartarandom)
-			mazo.splice(posicion, 1)
-			cantidadmazo = cantidadmazo- 1
-	
-			crearCarta(cartarandom)
-
-			carta4.nro = nrocarta
-			carta4.palo = palocarta
-			carta4.damage = damagecarta
-			carta4.cura = curacarta
-
-			carta4.sprite = this.add.image (carta4.x, carta4.y, 'cards', cartarandom).setScale(0.4).setInteractive();
-		
-			carta4.sprite.on("pointerdown", (pointer, localX, localY) => {
-			vidaenemigo = vidaenemigo - carta4.damage
-			vidajugador = vidajugador + carta4.cura
-
-			barradevida2.displayWidth = barradevida2.displayWidth - carta4.damage
-			barradevida2.x = barradevida2.x +carta4.damage/2
-	
-			barradevida.displayWidth = barradevida.displayWidth + carta4.cura
-			barradevida.x = barradevida.x +carta4.cura/2
-	
-			barravida1.setText(vidajugador.toString());
-			barravida2.setText(vidaenemigo.toString());
-
-			carta4.sprite.destroy()
-			estadocarta4 = 0
-			})
-			estadocarta4 = 1
-		}
-
-		if(estadocarta5 == 0) {
-			cartarandom = mazo[Phaser.Math.Between(0,cantidadmazo)]
-			posicion = mazo.indexOf(cartarandom)
-			mazo.splice(posicion, 1)
-			cantidadmazo = cantidadmazo- 1
-	
-			crearCarta(cartarandom)
-
-			carta5.nro = nrocarta
-			carta5.palo = palocarta
-			carta5.damage = damagecarta
-			carta5.cura = curacarta
-
-			carta5.sprite = this.add.image (carta5.x, carta5.y, 'cards', cartarandom).setScale(0.4).setInteractive();
-
-			carta5.sprite.on("pointerdown", (pointer, localX, localY) => {
-			vidaenemigo = vidaenemigo - carta5.damage
-			vidajugador = vidajugador + carta5.cura
-
-			barradevida2.displayWidth = barradevida2.displayWidth - carta5.damage
-			barradevida2.x = barradevida2.x +carta5.damage/2
-	
-			barradevida.displayWidth = barradevida.displayWidth + carta5.cura
-			barradevida.x = barradevida.x +carta5.cura/2
-		
-			barravida1.setText(vidajugador.toString());
-			barravida2.setText(vidaenemigo.toString());
-	
-			carta5.sprite.destroy()
-			estadocarta5 = 0
-	
-			})
-			estadocarta5 = 1
-
-		}
 
 		console.log(mazo)
 		console.log (cantidadmazo)
