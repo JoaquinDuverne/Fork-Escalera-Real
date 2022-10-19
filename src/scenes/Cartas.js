@@ -10,6 +10,7 @@ class Cartas {
 			this.estado = estado
 	}
 	
+	
 }
 
 export default Cartas;

@@ -1,3 +1,4 @@
+import Botones from './Botones.js'
 import Phaser, { GameObjects } from 'phaser'
 import Cartas from './Cartas.js'
 
@@ -70,15 +71,15 @@ export default class NivelMago extends Phaser.Scene
 
         //REY ANIMACIONES
 
-        const MagoAnimation = this.anims.create({
-        key: 'idle2',
+        const ReyAnimation = this.anims.create({
+        key: 'idle3',
         frames: this.anims.generateFrameNumbers('rey', {start: 0, end: 9}),
         frameRate: 5
         })
            
         const sprite2 = this.add.sprite(this.cameras.main.centerX +150,this.cameras.main.centerY +10, 'rey').setScale(0.76);
 
-        sprite2.play({ key: 'idle2', repeat: -1 });
+        sprite2.play({ key: 'idle3', repeat: -1 });
 
 		const ReyAnimation1 = this.anims.create({
 			key: 'reyanim1',
@@ -233,7 +234,7 @@ export default class NivelMago extends Phaser.Scene
 				contexto.scene.start("derrota");
 				}
 
-				sprite2.play({ key: 'idle2', repeat: -1 });
+				sprite2.play({ key: 'idle3', repeat: -1 });
 
 		
 				setTimeout (function cambioTurno () {
@@ -334,7 +335,7 @@ export default class NivelMago extends Phaser.Scene
 							contexto.scene.start("derrota");
 							}
 			
-							sprite2.play({ key: 'idle2', repeat: -1 });
+							sprite2.play({ key: 'idle3', repeat: -1 });
 					
 							setTimeout (function cambioTurno () {
 								

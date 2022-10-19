@@ -1,3 +1,4 @@
+import Botones from './Botones.js'
 import Phaser from 'phaser'
 export class LevelSelect extends Phaser.Scene {
     constructor() {
@@ -7,8 +8,7 @@ export class LevelSelect extends Phaser.Scene {
 
     create() {
 
-        this.add.image(this.cameras.main.centerX+9, this.cameras.main.centerY, 'escalera_bg').setScale(1.1);
-
+        this.add.image(this.cameras.main.centerX, this.cameras.main.centerY, 'escalera_bg').setScale(1.1);
 
 
         let Jugar2 = this.add.image(300, this.cameras.main.centerY*1.1, 'escalera_nivel1', 0).setScale(1);
@@ -25,11 +25,11 @@ export class LevelSelect extends Phaser.Scene {
             this.scene.start("NivelRey");});
 
 
-        let Salir2 = this.add.image(120, 40, 'escalera_btnsalir2', 0).setScale(1);
-        Salir2.setInteractive();
-            
-        Salir2.on("pointerdown", (pointer, localX, localY) => {
-            this.scene.start("MainMenu");}); 
+        let Volver = this.add.image(120, 40 + 7, 'boton').setScale(1.2);
+        Volver.on("pointerdown", (pointer, localX, localY) => {
+        this.scene.start("Mainmenu");});
+        const botonjugar = new Botones(120, 40, "Volver", this, () =>
+        {this.scene.start("MainMenu")})
             
     }
 }

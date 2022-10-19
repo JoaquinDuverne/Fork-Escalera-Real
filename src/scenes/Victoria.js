@@ -1,3 +1,4 @@
+import Botones from './Botones.js'
 import Phaser from 'phaser'
 export class Victoria extends Phaser.Scene
 {

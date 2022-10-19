@@ -1,3 +1,4 @@
+import Botones from './Botones.js'
 import Phaser, { GameObjects } from 'phaser'
 import Cartas from './Cartas.js'
 
