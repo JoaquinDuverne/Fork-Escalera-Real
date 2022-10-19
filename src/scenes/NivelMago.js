@@ -141,11 +141,53 @@ export default class NivelMago extends Phaser.Scene
 		for (let i = 0; i < 5; i++) {
 			const cartarandom = mazo[Phaser.Math.Between(1,cantidadmazo)]
 			const posicion = mazo.indexOf(cartarandom)
+<<<<<<< HEAD
+=======
 			mazo.splice(posicion, 1)
 			cantidadmazo = cantidadmazo- 1
 
 			crearCarta(cartarandom)
 
+			const carta = new Cartas (1, nrocarta, palocarta, damagecarta, curacarta, 150 * (i+1), 620)
+			carta.sprite = this.add.image (carta.x, carta.y, 'cards', cartarandom).setScale(0.4).setInteractive();
+
+			carta.sprite.on("pointerdown", (pointer, localX, localY) => {
+			vidaenemigo = vidaenemigo - carta.damage
+			vidajugador = vidajugador + carta.cura
+
+			barradevida2.displayWidth = barradevida2.displayWidth - carta.damage
+			barradevida2.x = barradevida2.x +carta.damage/2
+
+			barradevida.displayWidth = barradevida.displayWidth + carta.cura
+			barradevida.x = barradevida.x +carta.cura/2
+
+			barravida1.setText(vidajugador.toString());
+			barravida2.setText(vidaenemigo.toString());
+
+			carta.sprite.destroy()
+			carta.estado = 0
+		})
+		cartas.push(carta);
+			
+		}
+
+		
+		
+		//ROBAR CARTAS NUEVAS
+		botonturno = this.add.image (800, 300, 'botonturno').setScale(0.3).setInteractive();
+		botonturno.on("pointerdown", (pointer, localX, localY) => {
+		
+		for (let i = 0; i < 5; i++) {
+		if (cartas[i].estado == 0) {
+			cartarandom = mazo[Phaser.Math.Between(0,cantidadmazo)]
+			posicion = mazo.indexOf(cartarandom)
+>>>>>>> dd15c7f7b33c10685487d4d406b1b1270f8a0109
+			mazo.splice(posicion, 1)
+			cantidadmazo = cantidadmazo- 1
+
+			crearCarta(cartarandom)
+
+<<<<<<< HEAD
 			const carta = new Cartas (1, nrocarta, palocarta, damagecarta, curacarta, 150 * (i+1), 620)
 			carta.sprite = this.add.image (carta.x, carta.y, 'cards', cartarandom).setScale(0.4).setInteractive();
 
@@ -221,6 +263,37 @@ export default class NivelMago extends Phaser.Scene
 
 			},2000)
 			},2000)	
+=======
+			cartas[i].nro = nrocarta
+			cartas[i].palo = palocarta
+			cartas[i].damage = damagecarta
+			cartas[i].cura = curacarta
+
+			cartas[i].sprite = this.add.image (150 * (i+1), cartas[i].y, 'cards', cartarandom).setScale(0.4).setInteractive();
+			cartas[i].sprite.on("pointerdown", (pointer, localX, localY) => {
+				vidaenemigo = vidaenemigo - cartas[i].damage
+				vidajugador = vidajugador + cartas[i].cura
+
+				barradevida2.displayWidth = barradevida2.displayWidth - cartas[i].damage
+				barradevida2.x = barradevida2.x +cartas[i].damage/2
+		
+				barradevida.displayWidth = barradevida.displayWidth + cartas[i].cura
+				barradevida.x = barradevida.x +cartas[i].cura/2
+		
+				barravida1.setText(vidajugador.toString());
+				barravida2.setText(vidaenemigo.toString());
+		
+				cartas[i].sprite.destroy()
+				cartas[i].estado = 0
+			})
+			cartas[i].estado = 1
+		}}
+
+
+
+		console.log(mazo)
+		console.log (cantidadmazo)
+>>>>>>> dd15c7f7b33c10685487d4d406b1b1270f8a0109
 
 		})
 		cartas.push(carta);
