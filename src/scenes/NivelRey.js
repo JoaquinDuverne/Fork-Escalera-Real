@@ -12,7 +12,7 @@ export default class NivelMago extends Phaser.Scene
 {
 	constructor()
 	{
-		super('NivelMago')
+		super('NivelRey')
 		
         
 	}
@@ -47,7 +47,7 @@ export default class NivelMago extends Phaser.Scene
 
 		this.add.image(this.cameras.main.centerX, this.cameras.main.centerY, 'escalera_bg').setScale(1.1);
 
-		this.add.image(this.cameras.main.centerX, this.cameras.main.centerY, 'level1_bg').setScale(1);
+		this.add.image(this.cameras.main.centerX, this.cameras.main.centerY, 'level2_bg').setScale(1);
 				
 		let Salir = this.add.image(910, 625, 'escalera_btnsalir2', 0).setScale(0.8);
 		Salir.setInteractive();
@@ -68,17 +68,36 @@ export default class NivelMago extends Phaser.Scene
 
         sprite.play({ key: 'idle', repeat: -1 });
 
-        //MAGO ANIMACIONES
+        //REY ANIMACIONES
 
         const MagoAnimation = this.anims.create({
         key: 'idle2',
-        frames: this.anims.generateFrameNumbers('magos', {start: 0, end: 7}),
+        frames: this.anims.generateFrameNumbers('rey', {start: 0, end: 9}),
         frameRate: 5
         })
            
-        const sprite3 = this.add.sprite(this.cameras.main.centerX +150,this.cameras.main.centerY +10, 'magos').setScale(0.76);
+        const sprite2 = this.add.sprite(this.cameras.main.centerX +150,this.cameras.main.centerY +10, 'rey').setScale(0.76);
 
-        sprite3.play({ key: 'idle2', repeat: -1 });
+        sprite2.play({ key: 'idle2', repeat: -1 });
+
+		const ReyAnimation1 = this.anims.create({
+			key: 'reyanim1',
+			frames: this.anims.generateFrameNumbers('rey', {start: 11, end: 25}),
+			frameRate: 8
+			})
+
+		const ReyAnimation2 = this.anims.create({
+			key: 'reyanim2',
+			frames: this.anims.generateFrameNumbers('rey', {start: 45, end: 56}),
+			frameRate: 5
+			})
+
+		const ReyAnimationDormir = this.anims.create({
+			key: 'reydormir',
+			frames: this.anims.generateFrameNumbers('rey', {start: 26, end: 44}),
+			frameRate: 5
+			})
+	
 
 
 		//ARRAY DE NUMEROS QUE SIRVEN DE MAZO
@@ -174,12 +193,17 @@ export default class NivelMago extends Phaser.Scene
 			carta.estado = 0
 			
 			setTimeout (function cambioTurno () {
+			
+			accionEnemigo = Phaser.Math.Between(0,2)
+
+			if (accionEnemigo == 0) {sprite2.play({ key: 'reyanim2', repeat: 1 });}
+			else if (accionEnemigo == 1) {sprite2.play({ key: 'reyanim1', repeat: 1 });}
+			else {{sprite2.play({ key: 'reydormir', repeat: 1 });}}
+
 			turno = turno + 1
 			spritevida.setFrame(1)
 
 				setTimeout (function ataqueEnemigo () {
-				
-				accionEnemigo = Phaser.Math.Between(0,1)
 
 				if (accionEnemigo == 0) {
 
@@ -187,7 +211,7 @@ export default class NivelMago extends Phaser.Scene
 				barradevida.displayWidth = barradevida.displayWidth - enemigoDamage * 1.5
 				barradevida.x = barradevida.x - (enemigoDamage* 1.5)/2
 
-				} else {
+				} else if (accionEnemigo == 1) {
 
 				vidajugador = vidajugador - enemigoDamage
 				barradevida.displayWidth = barradevida.displayWidth - enemigoDamage
@@ -197,7 +221,7 @@ export default class NivelMago extends Phaser.Scene
 				barradevida2.displayWidth = barradevida2.displayWidth + enemigoDamage
 				barradevida2.x = barradevida2.x - enemigoDamage/2
 
-				}
+				} else
 				
 				if (vidaenemigo > 258) {
 				barradevida2.displayWidth = 258
@@ -208,6 +232,8 @@ export default class NivelMago extends Phaser.Scene
 				if (vidajugador <= 0) {
 				contexto.scene.start("derrota");
 				}
+
+				sprite2.play({ key: 'idle2', repeat: -1 });
 
 		
 				setTimeout (function cambioTurno () {
@@ -268,35 +294,47 @@ export default class NivelMago extends Phaser.Scene
 					cartas[i].sprite.destroy()
 					cartas[i].estado = 0
 					setTimeout (function cambioTurno () {
+			
+						accionEnemigo = Phaser.Math.Between(0,2)
+			
+						if (accionEnemigo == 0) {sprite2.play({ key: 'reyanim2', repeat: 1 });}
+						else if (accionEnemigo == 1) {sprite2.play({ key: 'reyanim1', repeat: 1 });}
+						else {{sprite2.play({ key: 'reydormir', repeat: 1 });}}
+			
 						turno = turno + 1
 						spritevida.setFrame(1)
 			
 							setTimeout (function ataqueEnemigo () {
-							accionEnemigo = Phaser.Math.Between(0,1)
-				
+			
 							if (accionEnemigo == 0) {
+			
 							vidajugador = vidajugador - enemigoDamage * 1.5
 							barradevida.displayWidth = barradevida.displayWidth - enemigoDamage * 1.5
 							barradevida.x = barradevida.x - (enemigoDamage* 1.5)/2
-							} else {
+			
+							} else if (accionEnemigo == 1) {
+			
 							vidajugador = vidajugador - enemigoDamage
 							barradevida.displayWidth = barradevida.displayWidth - enemigoDamage
 							barradevida.x = barradevida.x - enemigoDamage/2
-								
+							
 							vidaenemigo = vidaenemigo + enemigoDamage
 							barradevida2.displayWidth = barradevida2.displayWidth + enemigoDamage
 							barradevida2.x = barradevida2.x - enemigoDamage/2
-							}
-
+			
+							} else
+							
 							if (vidaenemigo > 258) {
 							barradevida2.displayWidth = 258
 							barradevida2.x = 675
 							vidaenemigo = 258
 							}
-						
+			
 							if (vidajugador <= 0) {
 							contexto.scene.start("derrota");
 							}
+			
+							sprite2.play({ key: 'idle2', repeat: -1 });
 					
 							setTimeout (function cambioTurno () {
 								

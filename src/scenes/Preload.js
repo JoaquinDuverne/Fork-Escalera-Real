@@ -12,6 +12,7 @@ export class Preload extends Phaser.Scene
 			this.load.image("botonturno", "assets/phaser_logo.png");
 			this.load.image("tutorial", "assets/tutorial.png");
 			this.load.image("rellenobarra1", "assets/vida_relleno.png");
+			this.load.image("fondobarra", "assets/vida_fondo.png");
 
 			this.load.image("black", "assets/black.png");
 
@@ -24,11 +25,13 @@ export class Preload extends Phaser.Scene
 			this.load.spritesheet('protas', "assets/prota_sprite.png", { frameWidth: 240, frameHeight: 150 })
 			//SPRITE SHEET MAGO MALVADO 
 			this.load.spritesheet('magos', "assets/mago_sprite.png", { frameWidth: 450, frameHeight: 450 })
+			this.load.spritesheet('rey', "assets/rey_sprite.png", { frameWidth: 450, frameHeight: 390 })
 			
 			//MENU
 			this.load.image("escalera_bg", "assets/escalera_bg.png");
 			this.load.image("escalera_logo", "assets/escalera_logo.png");
 			this.load.image("escalera_nivel1", "assets/escalera_nivel1.png");
+			this.load.image("escalera_nivel2", "assets/escalera_nivel2.png");
 		
 			//BOTONES
 			this.load.image("escalera_btncreditos", "assets/btn_creditos.png");
@@ -47,11 +50,13 @@ export class Preload extends Phaser.Scene
 			this.load.image("level1_bg", "assets/level1_bg.png");
 			this.load.image("libro", "assets/libro.png");
 			this.load.image("btn_juego", "assets/btn_juego.png");
+
+			this.load.image("level2_bg", "assets/escenario_2.png");
 		
 			//PERSONAJES
 			this.load.image("prota", "assets/sprite_protaf.png");
 			this.load.image("mago", "assets/sprite_mago.png");
-			this.load.image("barra_vida", "assets/barra_vida.png");
+			this.load.spritesheet("barra_vida", "assets/barra_vida.png",{ frameWidth: 870, frameHeight: 120 } );
 		
 			//CARTAS
 			this.load.image("carta_3t", "assets/carta_3t.png");

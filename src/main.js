@@ -7,6 +7,7 @@ import {Victoria} from "./scenes/Victoria";
 import {Derrota} from "./scenes/Derrota";
 import {Retry} from "./scenes/Retry";
 import NivelMago from "./scenes/NivelMago";
+import NivelRey from "./scenes/NivelRey";
 
 const config = {
 	type: Phaser.AUTO,
@@ -31,7 +32,7 @@ const config = {
 			debug: false,
 		}
 	},
-	scene: [Preload, MainMenu, NivelMago, LevelSelect, Level1, Victoria, Derrota, Retry]
+	scene: [Preload, MainMenu, NivelMago, NivelRey, LevelSelect, Level1, Victoria, Derrota, Retry]
 }
 
 export default new Phaser.Game(config)
