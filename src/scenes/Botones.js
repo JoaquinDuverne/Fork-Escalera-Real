@@ -8,8 +8,8 @@ class Button{
                 fontSize: "30px",
                 fill: "#fff",
                 stroke: '#000000',
-                strokeThickness: 11,
-                fontFamily: 'Happy Chicken'
+                strokeThickness: 5,
+                fontFamily: 'Alagard'
             })
             .setInteractive({UseHandcursor: true})
             .on('pointerdown', () => callback())
