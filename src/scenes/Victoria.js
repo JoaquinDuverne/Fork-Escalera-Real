@@ -13,10 +13,9 @@ export class Victoria extends Phaser.Scene
         this.add.image(this.cameras.main.centerX -200, this.cameras.main.centerY -200, 'escalera_victoria');
         this.add.image(this.cameras.main.centerX + 176, this.cameras.main.centerY +9, 'prota');
 
-        let Salir = this.add.image(this.cameras.main.centerX -200, this.cameras.main.centerY, 'escalera_btnsalir2', 0).setScale(0.8);
-        Salir.setInteractive();
-        Salir.on("pointerdown", (pointer, localX, localY) => {
-            this.scene.start("MainMenu");});
+        this.add.image(this.cameras.main.centerX-200, this.cameras.main.centerY - 7, 'boton').setScale(1.2);
+        const botonsalir = new Botones(this.cameras.main.centerX-200, this.cameras.main.centerY - 7, "Salir", this, () =>
+        {this.scene.start("MainMenu")})
 
 
     }

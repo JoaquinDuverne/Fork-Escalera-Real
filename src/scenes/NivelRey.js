@@ -50,12 +50,9 @@ export default class NivelMago extends Phaser.Scene
 
 		this.add.image(this.cameras.main.centerX, this.cameras.main.centerY, 'level2_bg').setScale(1);
 				
-		let Salir = this.add.image(910, 625, 'escalera_btnsalir2', 0).setScale(0.8);
-		Salir.setInteractive();
-							
-		Salir.on("pointerdown", (pointer, localX, localY) => {
-		this.scene.start("MainMenu");}); 
-		
+		this.add.image(910,625, 'boton').setScale(1);
+        const botonsalir = new Botones(910,625- 7, "Salir", this, () =>
+        {this.scene.start("MainMenu")}) 
 		
         //PROTAGONISTA ANIMACIONES
         
