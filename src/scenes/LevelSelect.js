@@ -1,5 +1,6 @@
 import Botones from './Botones.js'
 import Phaser from 'phaser'
+import { getPhrase } from '../services/translations.js';
 export class LevelSelect extends Phaser.Scene {
     constructor() {
 
@@ -28,7 +29,7 @@ export class LevelSelect extends Phaser.Scene {
         let Volver = this.add.image(120, 40 + 7, 'boton').setScale(1.2);
         Volver.on("pointerdown", (pointer, localX, localY) => {
         this.scene.start("Mainmenu");});
-        const botonjugar = new Botones(120, 40, "Volver", this, () =>
+        const botonjugar = new Botones(120, 40, getPhrase("Volver"), this, () =>
         {this.scene.start("MainMenu")})
             
     }

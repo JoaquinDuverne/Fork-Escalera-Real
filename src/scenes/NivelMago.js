@@ -1,6 +1,7 @@
 import Botones from './Botones.js'
 import Phaser, { GameObjects } from 'phaser'
 import Cartas from './Cartas.js'
+import { getPhrase } from '../services/translations.js'
 
 let gameOptions = {
     startingCards: 5,
@@ -51,7 +52,7 @@ export default class NivelMago extends Phaser.Scene
 		this.add.image(this.cameras.main.centerX, this.cameras.main.centerY, 'level1_bg').setScale(1);
 				
 		this.add.image(910,625, 'boton').setScale(1);
-        const botonsalir = new Botones(910,625- 7, "Salir", this, () =>
+        const botonsalir = new Botones(910,625- 7, getPhrase("Salir"), this, () =>
         {this.scene.start("MainMenu")}) 
 		
 		

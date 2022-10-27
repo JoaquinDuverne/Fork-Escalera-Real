@@ -1,5 +1,6 @@
 import Botones from './Botones.js'
 import Phaser from 'phaser'
+import { getPhrase } from '../services/translations.js';
 export class Victoria extends Phaser.Scene
 {
     constructor()
@@ -14,7 +15,7 @@ export class Victoria extends Phaser.Scene
         this.add.image(this.cameras.main.centerX + 176, this.cameras.main.centerY +9, 'prota');
 
         this.add.image(this.cameras.main.centerX-200, this.cameras.main.centerY - 7, 'boton').setScale(1.2);
-        const botonsalir = new Botones(this.cameras.main.centerX-200, this.cameras.main.centerY - 7, "Salir", this, () =>
+        const botonsalir = new Botones(this.cameras.main.centerX-200, this.cameras.main.centerY - 7, getPhrase("Salir"), this, () =>
         {this.scene.start("MainMenu")})
 
 

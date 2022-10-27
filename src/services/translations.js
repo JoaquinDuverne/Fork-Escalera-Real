@@ -2,7 +2,7 @@ import { DE_DE, EN_US, ES_AR, PT_BR } from '../enums/languages';
 
 const PROJECT_ID = '44';
 let translations = null;
-let language = ES_AR;
+let language = EN_US;
 
 export async function getTranslations(lang = language, callback) {
     localStorage.clear();

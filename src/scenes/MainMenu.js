@@ -1,10 +1,15 @@
 import Botones from './Botones.js'
 import Phaser from 'phaser'
+import { getPhrase } from '../services/translations.js';
 
 export class MainMenu extends Phaser.Scene {
     constructor() {
 
         super("MainMenu")
+    }
+
+    init({ language }){
+        this.language = language;
     }
 
     create() {
@@ -14,7 +19,7 @@ export class MainMenu extends Phaser.Scene {
         this.add.image(this.cameras.main.centerX, this.cameras.main.centerY/1.5, 'escalera_logo');
 
         this.add.image(this.cameras.main.centerX, this.cameras.main.centerY*1.1 + 7, 'boton').setScale(1.2);
-        const botonjugar = new Botones(this.cameras.main.centerX, this.cameras.main.centerY*1.1, "Jugar", this, () =>
+        const botonjugar = new Botones(this.cameras.main.centerX, this.cameras.main.centerY*1.1, getPhrase("Jugar"), this, () =>
 		{this.scene.start("LevelSelect")})
     }
 }

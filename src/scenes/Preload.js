@@ -1,6 +1,10 @@
 import Phaser from 'phaser'
+import { getLanguageConfig, getTranslations } from "../services/translations";
 export class Preload extends Phaser.Scene
 {
+
+	#language;
+
     constructor()
 	{
 		super('preload')
@@ -8,6 +12,8 @@ export class Preload extends Phaser.Scene
 	}  
 	preload ()
 	{
+		//this.#language = getLanguageConfig();
+        getTranslations(this.#language);
 
 			this.load.image("botonturno", "assets/phaser_logo.png");
 			this.load.image("tutorial", "assets/tutorial.png");
@@ -75,6 +81,10 @@ export class Preload extends Phaser.Scene
 	create() {
 
 		// Pasa directamente a la escena del menú principal
-		this.scene.start("MainMenu");
+		this.scene.start("MainMenu",{ language: this.#language });
 	  }
+
+	  async getTranslations(language){
+        await getTranslations(language)
+    }
 }
