@@ -39,7 +39,7 @@ export default class NivelMago extends Phaser.Scene
 		let barravida1
 		let barravida2
 
-		let enemigoDamage = 258 * 0.13
+		let enemigoDamage = 258 * 0.18
 
 		let accionEnemigo
 
@@ -47,7 +47,17 @@ export default class NivelMago extends Phaser.Scene
 
 		//FONDO Y BOTONES
 
-		this.add.image(this.cameras.main.centerX, this.cameras.main.centerY, 'escalera_bg').setScale(1.1);
+		//this.add.image(this.cameras.main.centerX, this.cameras.main.centerY, 'escalera_bg').setScale(1.1);
+
+		const bgAnimation = this.anims.create({
+            key: 'bg',
+            frames: this.anims.generateFrameNumbers('escalera_bg_sprite', {start: 0, end: 113}),
+            frameRate: 30
+            })
+    
+            const sprite4 = this.add.sprite(this.cameras.main.centerX ,this.cameras.main.centerY, 'escalera_bg_sprite').setScale(1.95);
+    
+            sprite4.play({ key: 'bg', repeat: -1 });
 
 		this.add.image(this.cameras.main.centerX, this.cameras.main.centerY, 'level2_bg').setScale(1);
 				
@@ -96,6 +106,12 @@ export default class NivelMago extends Phaser.Scene
 			frames: this.anims.generateFrameNumbers('rey', {start: 26, end: 44}),
 			frameRate: 5
 			})
+		
+		const ReyAnimationHit = this.anims.create({
+			key: 'reyhit',
+			frames: this.anims.generateFrameNumbers('rey', {start: 57, end: 58}),
+			frameRate: 2
+			})
 	
 
 
@@ -111,7 +127,7 @@ export default class NivelMago extends Phaser.Scene
 		let barradevida2 = this.add.image(675, 66, 'rellenobarra1')
 		
 
-		const spritevida = this.add.sprite(this.cameras.main.centerY + 180, 70, "barra_vida", 0)
+		const spritevida = this.add.sprite(this.cameras.main.centerY + 180, 70, "barra_vida2", 0)
 
 		let turno = 1
 
@@ -168,7 +184,9 @@ export default class NivelMago extends Phaser.Scene
 			carta.sprite = this.add.image (carta.x, carta.y, 'cards', cartarandom).setScale(0.4).setInteractive();
 
 			carta.sprite.on("pointerdown", (pointer, localX, localY) => {
+			
 			setTimeout (function ataqueJugador (){
+			spritevida.setFrame(1)
 			vidaenemigo = vidaenemigo - carta.damage
 			vidajugador = vidajugador + carta.cura
 
@@ -177,6 +195,8 @@ export default class NivelMago extends Phaser.Scene
 
 			barradevida.displayWidth = barradevida.displayWidth + carta.cura
 			barradevida.x = barradevida.x + carta.cura/2
+
+			sprite2.play({ key: 'reyhit', repeat: 0 });
 
 			if (vidajugador > 258) {
 			barradevida.displayWidth = 258
@@ -200,7 +220,7 @@ export default class NivelMago extends Phaser.Scene
 			else {{sprite2.play({ key: 'reydormir', repeat: 1 });}}
 
 			turno = turno + 1
-			spritevida.setFrame(1)
+			spritevida.setFrame(2)
 
 				setTimeout (function ataqueEnemigo () {
 
@@ -220,6 +240,8 @@ export default class NivelMago extends Phaser.Scene
 				barradevida2.displayWidth = barradevida2.displayWidth + enemigoDamage
 				barradevida2.x = barradevida2.x - enemigoDamage/2
 
+				
+
 				} else
 				
 				if (vidaenemigo > 258) {
@@ -233,18 +255,18 @@ export default class NivelMago extends Phaser.Scene
 				}
 
 				sprite2.play({ key: 'idle3', repeat: -1 });
-
+				spritevida.setFrame(3)
 		
 				setTimeout (function cambioTurno () {
 					turno = turno + 1
 					spritevida.setFrame(0)
 					robarCarta();
-					},2000)
+					},500)
 					
 		
 				},2000)
 
-			},2000)
+			},500)
 			},2000)	
 
 		})
@@ -270,6 +292,8 @@ export default class NivelMago extends Phaser.Scene
 				cartas[i].sprite = contexto.add.image (150 * (i+1), cartas[i].y, 'cards', cartarandom).setScale(0.4).setInteractive();
 				cartas[i].sprite.on("pointerdown", (pointer, localX, localY) => {
 					setTimeout (function ataqueJugador (){
+					
+					spritevida.setFrame(1)
 
 					vidaenemigo = vidaenemigo - cartas[i].damage
 					vidajugador = vidajugador + cartas[i].cura
@@ -279,6 +303,8 @@ export default class NivelMago extends Phaser.Scene
 			
 					barradevida.displayWidth = barradevida.displayWidth + cartas[i].cura
 					barradevida.x = barradevida.x + cartas[i].cura/2
+
+					sprite2.play({ key: 'reyhit', repeat: 0 });
 
 					if (vidajugador > 258) {
 					barradevida.displayWidth = 258
@@ -301,7 +327,7 @@ export default class NivelMago extends Phaser.Scene
 						else {{sprite2.play({ key: 'reydormir', repeat: 1 });}}
 			
 						turno = turno + 1
-						spritevida.setFrame(1)
+						spritevida.setFrame(2)
 			
 							setTimeout (function ataqueEnemigo () {
 			
@@ -334,18 +360,18 @@ export default class NivelMago extends Phaser.Scene
 							}
 			
 							sprite2.play({ key: 'idle3', repeat: -1 });
-					
+							spritevida.setFrame(3)
 							setTimeout (function cambioTurno () {
 								
 								turno = turno + 1
 								spritevida.setFrame(0)
 								robarCarta();
-								},2000)
+								},500)
 								
 					
 							},2000)
 			
-						},2000)
+						},500)
 						},2000)	
 				})
 				cartas[i].estado = 1

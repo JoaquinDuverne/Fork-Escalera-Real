@@ -10,7 +10,19 @@ export class Victoria extends Phaser.Scene
 	}
 	create() {
         
-        this.add.image(this.cameras.main.centerX, this.cameras.main.centerY, 'escalera_bg').setScale(1.1);
+        //this.add.image(this.cameras.main.centerX, this.cameras.main.centerY, 'escalera_bg').setScale(1.1);
+
+        const bgAnimation = this.anims.create({
+            key: 'bg',
+            frames: this.anims.generateFrameNumbers('escalera_bg_sprite', {start: 0, end: 113}),
+            frameRate: 30
+            })
+    
+            const sprite = this.add.sprite(this.cameras.main.centerX ,this.cameras.main.centerY, 'escalera_bg_sprite').setScale(1.95);
+    
+            sprite.play({ key: 'bg', repeat: -1 });
+
+        
         this.add.image(this.cameras.main.centerX -200, this.cameras.main.centerY -200, 'escalera_victoria');
         this.add.image(this.cameras.main.centerX + 176, this.cameras.main.centerY +9, 'prota');
 

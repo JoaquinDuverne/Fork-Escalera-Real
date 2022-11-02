@@ -31,11 +31,12 @@ export class Preload extends Phaser.Scene
 		    //SPRITE SHEET PROTA
 			this.load.spritesheet('protas', "assets/prota_sprite.png", { frameWidth: 240, frameHeight: 150 })
 			//SPRITE SHEET MAGO MALVADO 
-			this.load.spritesheet('magos', "assets/mago_sprite.png", { frameWidth: 450, frameHeight: 450 })
+			this.load.spritesheet('magos', "assets/spritesheetmago.png", { frameWidth: 450, frameHeight: 450 })
 			this.load.spritesheet('rey', "assets/rey_sprite.png", { frameWidth: 450, frameHeight: 390 })
 			
 			//MENU
 			this.load.image("escalera_bg", "assets/escalera_bg.png");
+			this.load.spritesheet("escalera_bg_sprite", "assets/escalera_big_spritesheet.png", {frameWidth:600, frameHeight: 344 });
 			this.load.image("escalera_logo", "assets/escalera_logo.png");
 			this.load.image("escalera_nivel1", "assets/escalera_nivel1.png");
 			this.load.image("escalera_nivel2", "assets/escalera_nivel2.png");
@@ -64,7 +65,8 @@ export class Preload extends Phaser.Scene
 			this.load.image("prota", "assets/sprite_protaf.png");
 			this.load.image("mago", "assets/sprite_mago.png");
 			this.load.spritesheet("barra_vida", "assets/barra_vida.png",{ frameWidth: 870, frameHeight: 120 } );
-		
+			this.load.spritesheet("barra_vida2", "assets/barra_vida2.png",{ frameWidth: 870, frameHeight: 120 } );
+
 			//CARTAS
 			this.load.image("carta_3t", "assets/carta_3t.png");
 			this.load.image("carta_5d", "assets/carta_5d.png");
