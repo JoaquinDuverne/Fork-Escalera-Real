@@ -32,6 +32,7 @@ export default class NivelMago extends Phaser.Scene
 		let palocarta = 0
 		let damagecarta = 0
 		let curacarta = 0
+		let spritecarta = 0
 
 		let vidaenemigo = 258
 		let vidajugador = 258
@@ -77,6 +78,54 @@ export default class NivelMago extends Phaser.Scene
         const sprite = this.add.sprite(this.cameras.main.centerX -139,this.cameras.main.centerY +81, 'protas').setScale(0.76);
 
         sprite.play({ key: 'idle', repeat: -1 });
+
+		const protasAnimation2 = this.anims.create({
+			key: 'cura',
+			frames: this.anims.generateFrameNumbers('protas', {start: 4, end: 9}),
+			frameRate: 4
+			})
+
+		const protasAnimation3 = this.anims.create({
+			key: 'as',
+			frames: this.anims.generateFrameNumbers('protas', {start: 10, end: 16}),
+			frameRate: 4
+			})
+		
+		const protasAnimation4 = this.anims.create({
+			key: 'q',
+			frames: this.anims.generateFrameNumbers('protas', {start: 17, end: 21}),
+			frameRate: 4
+			})
+	
+		const protasAnimation5 = this.anims.create({
+			key: 'hit1',
+			frames: this.anims.generateFrameNumbers('protas', {start: 22, end: 23}),
+			frameRate: 4
+			})
+		
+		const protasAnimation6 = this.anims.create({
+			key: 'sword',
+			frames: this.anims.generateFrameNumbers('protas', {start: 24, end: 28}),
+			frameRate: 4
+			})
+		
+		const protasAnimation7 = this.anims.create({
+			key: 'shield',
+			frames: this.anims.generateFrameNumbers('protas', {start: 29, end: 38}),
+			frameRate: 4
+			})
+			
+		const protasAnimation8 = this.anims.create({
+			key: 'k',
+			frames: this.anims.generateFrameNumbers('protas', {start: 39, end: 43}),
+			frameRate: 4
+			})
+
+		const protasAnimation9 = this.anims.create({
+			key: 'j',
+			frames: this.anims.generateFrameNumbers('protas', {start: 44, end: 47}),
+			frameRate: 4
+			})
 
         //MAGO ANIMACIONES
 
@@ -128,31 +177,39 @@ export default class NivelMago extends Phaser.Scene
 
 		if(nrocarta==1) {
 			damagecarta = 258 * 0.3
-			curacarta = 0	
+			curacarta = 0
+			spritecarta = 1
+
 		}
 		if (nrocarta == 2 || nrocarta == 5 || nrocarta == 8) {
 			damagecarta = 258 * 0.05 + 7*nrocarta
 			curacarta = 0
+			spritecarta = 2
 		}
 		if (nrocarta == 3 || nrocarta == 6 || nrocarta == 9) {
 			damagecarta = 0
 			curacarta = 258 * 0.05 + 7*nrocarta
+			spritecarta = 3
 		}
 		if (nrocarta == 4 || nrocarta == 7 || nrocarta == 10) {
 			damagecarta = 258 * 0.025 + 4*nrocarta
 			curacarta = 258 * 0.025 + 4*nrocarta
+			spritecarta = 4
 		}
 		if (nrocarta == 11) {
 			damagecarta = 258 * 0.1 
-			curacarta = 258 * 0.1 
+			curacarta = 258 * 0.1
+			spritecarta = 5
 		}
 		if (nrocarta == 12) {
 			damagecarta = 0
 			curacarta = 258 * 0.35
+			spritecarta = 6
 		}
 		if (nrocarta == 13) {
 			damagecarta = 258 * 0.35
 			curacarta = 0
+			spritecarta = 7
 		}
 		}
 
@@ -166,12 +223,21 @@ export default class NivelMago extends Phaser.Scene
 
 			crearCarta(cartarandom)
 
-			const carta = new Cartas (1, nrocarta, palocarta, damagecarta, curacarta, 150 * (i+1), 620)
+			const carta = new Cartas (1, nrocarta, palocarta, damagecarta, curacarta, 150 * (i+1), 620, spritecarta)
 			carta.sprite = this.add.image (carta.x, carta.y, 'cards', cartarandom).setScale(0.4).setInteractive();
 
 			carta.sprite.on("pointerdown", (pointer, localX, localY) => {
+
+			if (carta.sprites == 1) {sprite.play({ key: 'as', repeat: 0 });}
+			if (carta.sprites == 2) {sprite.play({ key: 'sword', repeat: 0 });} 
+			if (carta.sprites == 3) {sprite.play({ key: 'cura', repeat: 0 });} 
+			if (carta.sprites == 4) {sprite.play({ key: 'shield', repeat: 0 });} 
+			if (carta.sprites == 5) {sprite.play({ key: 'j', repeat: 0 });} 
+			if (carta.sprites == 6) {sprite.play({ key: 'q', repeat: 0 });}
+			if (carta.sprites == 7) {sprite.play({ key: 'k', repeat: 0 });} 
 			
 			setTimeout (function ataqueJugador (){
+
 			vidaenemigo = vidaenemigo - carta.damage
 			vidajugador = vidajugador + carta.cura
 
@@ -181,6 +247,8 @@ export default class NivelMago extends Phaser.Scene
 			barradevida.displayWidth = barradevida.displayWidth + carta.cura
 			barradevida.x = barradevida.x + carta.cura/2
 			spritevida.setFrame(1)
+
+			sprite.play({ key: 'idle', repeat: -1 });
 
 			sprite3.play({ key: 'hit', repeat: 0 });
 
@@ -210,6 +278,7 @@ export default class NivelMago extends Phaser.Scene
 
 				setTimeout (function ataqueEnemigo () {
 				
+				sprite.play({ key: 'hit1', repeat: 0 });
 
 				if (accionEnemigo == 0) {
 
@@ -245,6 +314,7 @@ export default class NivelMago extends Phaser.Scene
 
 		
 				setTimeout (function cambioTurno () {
+					sprite.play({ key: 'idle', repeat: -1 });
 					turno = turno + 1
 					spritevida.setFrame(0)
 					robarCarta();
@@ -275,9 +345,18 @@ export default class NivelMago extends Phaser.Scene
 				cartas[i].palo = palocarta
 				cartas[i].damage = damagecarta
 				cartas[i].cura = curacarta
+				cartas[i].sprites = spritecarta
 	
 				cartas[i].sprite = contexto.add.image (150 * (i+1), cartas[i].y, 'cards', cartarandom).setScale(0.4).setInteractive();
 				cartas[i].sprite.on("pointerdown", (pointer, localX, localY) => {
+
+					if (cartas[i].sprites == 1) {sprite.play({ key: 'as', repeat: 0 });}
+					if (cartas[i].sprites == 2) {sprite.play({ key: 'sword', repeat: 0 });} 
+					if (cartas[i].sprites == 3) {sprite.play({ key: 'cura', repeat: 0 });} 
+					if (cartas[i].sprites == 4) {sprite.play({ key: 'shield', repeat: 0 });} 
+					if (cartas[i].sprites == 5) {sprite.play({ key: 'j', repeat: 0 });} 
+					if (cartas[i].sprites == 6) {sprite.play({ key: 'q', repeat: 0 });}
+					if (cartas[i].sprites == 7) {sprite.play({ key: 'k', repeat: 0 });} 
 					
 					setTimeout (function ataqueJugador (){
 
@@ -291,6 +370,8 @@ export default class NivelMago extends Phaser.Scene
 					barradevida.x = barradevida.x + cartas[i].cura/2
 
 					spritevida.setFrame(1)
+
+					sprite.play({ key: 'idle', repeat: -1 });
 
 					sprite3.play({ key: 'hit', repeat: 0 });
 
@@ -316,7 +397,8 @@ export default class NivelMago extends Phaser.Scene
 
 			
 							setTimeout (function ataqueEnemigo () {
-
+							
+							sprite.play({ key: 'hit1', repeat: 0 });
 				
 							if (accionEnemigo == 0) {
 							vidajugador = vidajugador - enemigoDamage * 1.5
@@ -342,9 +424,10 @@ export default class NivelMago extends Phaser.Scene
 							contexto.scene.start("derrota");
 							}
 							spritevida.setFrame(3)
+							sprite3.play({ key: 'idle2', repeat: -1 });
 					
 							setTimeout (function cambioTurno () {
-								
+								sprite.play({ key: 'idle', repeat: -1 });
 								turno = turno + 1
 								spritevida.setFrame(0)
 								robarCarta();
