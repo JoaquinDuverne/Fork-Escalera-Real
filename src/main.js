@@ -1,11 +1,12 @@
 import Phaser from "phaser";
 import {Preload} from "./scenes/Preload.js";
 import {MainMenu} from "./scenes/MainMenu.js";
+import {Idiomas} from "./scenes/Idiomas.js";
 import {LevelSelect} from "./scenes/LevelSelect.js";
 import {Level1} from "./scenes/Level1";
 import {Victoria} from "./scenes/Victoria";
 import {Derrota} from "./scenes/Derrota";
-import {Retry} from "./scenes/Retry";
+import {Derrota2} from "./scenes/Derrota2";
 import NivelMago from "./scenes/NivelMago";
 import NivelRey from "./scenes/NivelRey";
 
@@ -32,7 +33,7 @@ const config = {
 			debug: false,
 		}
 	},
-	scene: [Preload, MainMenu, NivelMago, NivelRey, LevelSelect, Level1, Victoria, Derrota, Retry]
+	scene: [Preload, MainMenu, Idiomas, NivelMago, NivelRey, LevelSelect, Level1, Victoria, Derrota, Derrota2]
 }
 
 export default new Phaser.Game(config)

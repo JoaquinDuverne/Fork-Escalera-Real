@@ -4,12 +4,13 @@ class Button{
             .setOrigin(0.5)
             .setPadding(10)
             .setStyle({
+                fontFamily: "Germania One",
                 backgroundColor: null,
                 fontSize: "30px",
                 fill: "#fff",
                 stroke: '#000000',
                 strokeThickness: 5,
-                fontFamily: 'Alagard'
+                
             })
             .setInteractive({UseHandcursor: true})
             .on('pointerdown', () => callback())

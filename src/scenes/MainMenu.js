@@ -1,6 +1,7 @@
-import Botones from './Botones.js'
+import Button from './Botones.js';
 import Phaser from 'phaser'
 import { getPhrase } from '../services/translations.js';
+
 
 export class MainMenu extends Phaser.Scene {
     constructor() {
@@ -8,11 +9,13 @@ export class MainMenu extends Phaser.Scene {
         super("MainMenu")
     }
 
-    init({ language }){
+    init({ language}){
         this.language = language;
+
     }
 
     create() {
+
 
         const bgAnimation = this.anims.create({
             key: 'bg',
@@ -24,12 +27,18 @@ export class MainMenu extends Phaser.Scene {
     
             sprite.play({ key: 'bg', repeat: -1 });
 
-        //this.add.image(this.cameras.main.centerX, this.cameras.main.centerY, 'escalera_bg_gif').setScale(1.1);
 
         this.add.image(this.cameras.main.centerX, this.cameras.main.centerY/1.5, 'escalera_logo');
 
         this.add.image(this.cameras.main.centerX, this.cameras.main.centerY*1.1 + 7, 'boton').setScale(1.2);
-        const botonjugar = new Botones(this.cameras.main.centerX, this.cameras.main.centerY*1.1, getPhrase("Jugar"), this, () =>
+
+        let botonjugar = new Button (this.cameras.main.centerX, this.cameras.main.centerY*1.1, getPhrase("Jugar"), this, () =>
 		{this.scene.start("LevelSelect")})
+
+        let botonidioma = this.add.image(this.cameras.main.centerX ,this.cameras.main.centerY*1.5, "escalera_btnidioma").setScale(1.2);
+        botonidioma.setInteractive()
+        botonidioma.on("pointerdown", (pointer, localX, localY) => {
+            this.scene.start("Idiomas");});
+
     }
 }

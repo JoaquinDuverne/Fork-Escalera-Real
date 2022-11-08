@@ -36,10 +36,14 @@ export class Preload extends Phaser.Scene
 			
 			//MENU
 			this.load.image("escalera_bg", "assets/escalera_bg.png");
-			this.load.spritesheet("escalera_bg_sprite", "assets/escalera_big_spritesheet.png", {frameWidth:600, frameHeight: 344 });
+			this.load.spritesheet("escalera_bg_sprite", "assets/escalera_big_spritesheet.png", {frameWidth:600, frameHeight: 338 });
 			this.load.image("escalera_logo", "assets/escalera_logo.png");
 			this.load.image("escalera_nivel1", "assets/escalera_nivel1.png");
+			this.load.image("escalera_nivel12", "assets/escalera_nivel12.png");
 			this.load.image("escalera_nivel2", "assets/escalera_nivel2.png");
+			this.load.image("escalera_nivel2_lock", "assets/escalera_nivel2_lock.png");
+			this.load.image("eeuu", "assets/eeuu.png");
+			this.load.image("esp", "assets/espana.png");
 		
 			//BOTONES
 			this.load.image("escalera_btncreditos", "assets/btn_creditos.png");
@@ -49,6 +53,7 @@ export class Preload extends Phaser.Scene
 			this.load.image("escalera_btnsalir", "assets/btn_salir.png");
 			this.load.image("escalera_btnsalir2", "assets/btn_salir2.png");
 			this.load.image("escalera_btnsiguiente2", "assets/btn_siguiente2.png");
+			this.load.image("escalera_btnidioma", "assets/botonidiomas.png");
 		
 			//VICTORIA Y DERROTA
 			this.load.image("escalera_victoria", "assets/escalera_victoria.png");
@@ -64,20 +69,9 @@ export class Preload extends Phaser.Scene
 			//PERSONAJES
 			this.load.image("prota", "assets/sprite_protaf.png");
 			this.load.image("mago", "assets/sprite_mago.png");
+			this.load.image("retratorey", "assets/sprite_gordo.png");
 			this.load.spritesheet("barra_vida", "assets/barra_vida.png",{ frameWidth: 870, frameHeight: 120 } );
 			this.load.spritesheet("barra_vida2", "assets/barra_vida2.png",{ frameWidth: 870, frameHeight: 120 } );
-
-			//CARTAS
-			this.load.image("carta_3t", "assets/carta_3t.png");
-			this.load.image("carta_5d", "assets/carta_5d.png");
-			this.load.image("carta_9c", "assets/carta_9c.png");
-			this.load.image("carta_8p", "assets/carta_8p.png");
-		
-			//CARTAS NEGRO
-			this.load.image("carta_3t_Negro", "assets/carta_3t_Negro.png");
-			this.load.image("carta_5d_Negro", "assets/carta_5d_Negro.png");
-			this.load.image("carta_9c_Negro", "assets/carta_9c_Negro.png");
-			this.load.image("carta_8p_Negro", "assets/carta_8p_Negro.png");
 		
 	}
 	create() {

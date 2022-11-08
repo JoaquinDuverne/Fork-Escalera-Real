@@ -1,7 +1,7 @@
-import Botones from './Botones.js'
 import Phaser, { GameObjects } from 'phaser'
 import Cartas from './Cartas.js'
 import { getPhrase } from '../services/translations.js'
+import Button from './Botones.js'
 
 let gameOptions = {
     startingCards: 5,
@@ -40,6 +40,8 @@ export default class NivelMago extends Phaser.Scene
 		let barravida1
 		let barravida2
 
+		let bloqueo = 0
+
 		let enemigoDamage = 258 * 0.13
 
 		let accionEnemigo
@@ -63,7 +65,7 @@ export default class NivelMago extends Phaser.Scene
 		this.add.image(this.cameras.main.centerX, this.cameras.main.centerY, 'level1_bg').setScale(1);
 				
 		this.add.image(910,625, 'boton').setScale(1);
-        const botonsalir = new Botones(910,625- 7, getPhrase("Salir"), this, () =>
+        const botonsalir = new Button (910,625- 7, getPhrase("Salir"), this, () =>
         {this.scene.start("MainMenu")}) 
 		
 		
@@ -228,6 +230,9 @@ export default class NivelMago extends Phaser.Scene
 
 			carta.sprite.on("pointerdown", (pointer, localX, localY) => {
 
+			if (bloqueo == 0) {
+			bloqueo = 1
+
 			if (carta.sprites == 1) {sprite.play({ key: 'as', repeat: 0 });}
 			if (carta.sprites == 2) {sprite.play({ key: 'sword', repeat: 0 });} 
 			if (carta.sprites == 3) {sprite.play({ key: 'cura', repeat: 0 });} 
@@ -317,6 +322,7 @@ export default class NivelMago extends Phaser.Scene
 					sprite.play({ key: 'idle', repeat: -1 });
 					turno = turno + 1
 					spritevida.setFrame(0)
+					bloqueo = 0
 					robarCarta();
 					},500)
 					
@@ -326,7 +332,7 @@ export default class NivelMago extends Phaser.Scene
 			},500)
 			},2000)	
 
-		})
+		}})
 		cartas.push(carta);
 			
 		}
@@ -349,6 +355,9 @@ export default class NivelMago extends Phaser.Scene
 	
 				cartas[i].sprite = contexto.add.image (150 * (i+1), cartas[i].y, 'cards', cartarandom).setScale(0.4).setInteractive();
 				cartas[i].sprite.on("pointerdown", (pointer, localX, localY) => {
+				
+				if (bloqueo == 0) {
+				bloqueo = 1
 
 					if (cartas[i].sprites == 1) {sprite.play({ key: 'as', repeat: 0 });}
 					if (cartas[i].sprites == 2) {sprite.play({ key: 'sword', repeat: 0 });} 
@@ -430,6 +439,7 @@ export default class NivelMago extends Phaser.Scene
 								sprite.play({ key: 'idle', repeat: -1 });
 								turno = turno + 1
 								spritevida.setFrame(0)
+								bloqueo = 0
 								robarCarta();
 								},500)
 								
@@ -438,7 +448,7 @@ export default class NivelMago extends Phaser.Scene
 			
 						},500)
 						},2000)	
-				})
+			}})
 				cartas[i].estado = 1
 			}}
 			}
