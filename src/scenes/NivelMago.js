@@ -50,17 +50,15 @@ export default class NivelMago extends Phaser.Scene
 
 		//FONDO Y BOTONES
 
-		//this.add.image(this.cameras.main.centerX, this.cameras.main.centerY, 'escalera_bg').setScale(1.1);
-
 		const bgAnimation = this.anims.create({
             key: 'bg',
             frames: this.anims.generateFrameNumbers('escalera_bg_sprite', {start: 0, end: 113}),
             frameRate: 30
-            })
+        })
     
-            const sprite4 = this.add.sprite(this.cameras.main.centerX ,this.cameras.main.centerY, 'escalera_bg_sprite').setScale(1.95);
+        const sprite4 = this.add.sprite(this.cameras.main.centerX ,this.cameras.main.centerY, 'escalera_bg_sprite').setScale(1.95);
     
-            sprite4.play({ key: 'bg', repeat: -1 });
+        sprite4.play({ key: 'bg', repeat: -1 });
 
 		this.add.image(this.cameras.main.centerX, this.cameras.main.centerY, 'level1_bg').setScale(1);
 				
@@ -68,13 +66,12 @@ export default class NivelMago extends Phaser.Scene
         const botonsalir = new Button (910,625- 7, getPhrase("Salir"), this, () =>
         {this.scene.start("MainMenu")}) 
 		
-		
         //PROTAGONISTA ANIMACIONES
         
         const protasAnimation = this.anims.create({
-        key: 'idle',
-        frames: this.anims.generateFrameNumbers('protas', {start: 0, end: 3}),
-        frameRate: 4
+        	key: 'idle',
+        	frames: this.anims.generateFrameNumbers('protas', {start: 0, end: 3}),
+        	frameRate: 4
         })
 
         const sprite = this.add.sprite(this.cameras.main.centerX -139,this.cameras.main.centerY +81, 'protas').setScale(0.76);
@@ -85,57 +82,58 @@ export default class NivelMago extends Phaser.Scene
 			key: 'cura',
 			frames: this.anims.generateFrameNumbers('protas', {start: 4, end: 9}),
 			frameRate: 4
-			})
+		})
 
 		const protasAnimation3 = this.anims.create({
 			key: 'as',
 			frames: this.anims.generateFrameNumbers('protas', {start: 10, end: 16}),
 			frameRate: 4
-			})
+		})
 		
 		const protasAnimation4 = this.anims.create({
 			key: 'q',
 			frames: this.anims.generateFrameNumbers('protas', {start: 17, end: 21}),
 			frameRate: 4
-			})
+		})
 	
 		const protasAnimation5 = this.anims.create({
 			key: 'hit1',
 			frames: this.anims.generateFrameNumbers('protas', {start: 22, end: 23}),
 			frameRate: 4
-			})
+		})
 		
 		const protasAnimation6 = this.anims.create({
 			key: 'sword',
 			frames: this.anims.generateFrameNumbers('protas', {start: 24, end: 28}),
 			frameRate: 4
-			})
+		})
 		
 		const protasAnimation7 = this.anims.create({
 			key: 'shield',
 			frames: this.anims.generateFrameNumbers('protas', {start: 29, end: 38}),
 			frameRate: 4
-			})
+		})
 			
 		const protasAnimation8 = this.anims.create({
 			key: 'k',
 			frames: this.anims.generateFrameNumbers('protas', {start: 39, end: 43}),
 			frameRate: 4
-			})
+		})
 
 		const protasAnimation9 = this.anims.create({
 			key: 'j',
 			frames: this.anims.generateFrameNumbers('protas', {start: 44, end: 47}),
 			frameRate: 4
-			})
+		})
 
         //MAGO ANIMACIONES
 
         const MagoAnimation = this.anims.create({
-        key: 'idle2',
-        frames: this.anims.generateFrameNumbers('magos', {start: 0, end: 7}),
-        frameRate: 5
-        })   
+        	key: 'idle2',
+        	frames: this.anims.generateFrameNumbers('magos', {start: 0, end: 7}),
+        	frameRate: 5
+        })  
+
         const sprite3 = this.add.sprite(this.cameras.main.centerX +150,this.cameras.main.centerY +10, 'magos').setScale(0.76);
         sprite3.play({ key: 'idle2', repeat: -1 });
 
@@ -143,13 +141,13 @@ export default class NivelMago extends Phaser.Scene
 			key: 'atk1',
 			frames: this.anims.generateFrameNumbers('magos', {start: 8, end: 24}),
 			frameRate: 5
-			})
+		})
 
 		const MagoAnimationHit = this.anims.create({
 			key: 'hit',
 			frames: this.anims.generateFrameNumbers('magos', {start: 25, end: 26}),
 			frameRate: 2
-			})   
+		})   
 
 
 		//ARRAY DE NUMEROS QUE SIRVEN DE MAZO
@@ -159,15 +157,12 @@ export default class NivelMago extends Phaser.Scene
 		//VIDAS
 		let barradevidafondo = this.add.image(339, 66, 'fondobarra')
 		let barradevida2fondo = this.add.image(675, 66, 'fondobarra')
-
 		let barradevida = this.add.image(339, 66, 'rellenobarra1')
 		let barradevida2 = this.add.image(675, 66, 'rellenobarra1')
-		
 
 		const spritevida = this.add.sprite(this.cameras.main.centerY + 180, 70, "barra_vida", 0)
 
 		let turno = 1
-
 
 		//FUNCION CREAR CARTAS
 		function crearCarta(carta){
@@ -181,7 +176,6 @@ export default class NivelMago extends Phaser.Scene
 			damagecarta = 258 * 0.3
 			curacarta = 0
 			spritecarta = 1
-
 		}
 		if (nrocarta == 2 || nrocarta == 5 || nrocarta == 8) {
 			damagecarta = 258 * 0.05 + 7*nrocarta
@@ -258,83 +252,80 @@ export default class NivelMago extends Phaser.Scene
 			sprite3.play({ key: 'hit', repeat: 0 });
 
 			if (vidajugador > 258) {
-			barradevida.displayWidth = 258
-			barradevida.x = 339
-			vidajugador = 258
+				barradevida.displayWidth = 258
+				barradevida.x = 339
+				vidajugador = 258
 			}
 
 			if (vidaenemigo <= 0) {
-			contexto.scene.start("victoria");
+				contexto.scene.start("victoria");
 			}
 
 			carta.sprite.destroy()
 			carta.estado = 0
 
-			
 			setTimeout (function cambioTurno () {
-			turno = turno + 1
-			spritevida.setFrame(2)
+				turno = turno + 1
+				spritevida.setFrame(2)
 
-			accionEnemigo = Phaser.Math.Between(0,1)
+				accionEnemigo = Phaser.Math.Between(0,1)
 			
-			if (accionEnemigo == 0) {sprite3.play({ key: 'atk1', repeat: 0 });}
-			else if (accionEnemigo == 1) {sprite3.play({ key: 'atk1', repeat: 0 });}
+				if (accionEnemigo == 0) {sprite3.play({ key: 'atk1', repeat: 0 });}
+				else if (accionEnemigo == 1) {sprite3.play({ key: 'atk1', repeat: 0 });}
 
 
 				setTimeout (function ataqueEnemigo () {
 				
-				sprite.play({ key: 'hit1', repeat: 0 });
+					sprite.play({ key: 'hit1', repeat: 0 });
 
-				if (accionEnemigo == 0) {
+					if (accionEnemigo == 0) {
 
-				vidajugador = vidajugador - enemigoDamage * 1.5
-				barradevida.displayWidth = barradevida.displayWidth - enemigoDamage * 1.5
-				barradevida.x = barradevida.x - (enemigoDamage* 1.5)/2
+						vidajugador = vidajugador - enemigoDamage * 1.5
+						barradevida.displayWidth = barradevida.displayWidth - enemigoDamage * 1.5
+						barradevida.x = barradevida.x - (enemigoDamage* 1.5)/2
 
-				} else {
+					} else {
 
-				vidajugador = vidajugador - enemigoDamage
-				barradevida.displayWidth = barradevida.displayWidth - enemigoDamage
-				barradevida.x = barradevida.x - enemigoDamage/2
+						vidajugador = vidajugador - enemigoDamage
+						barradevida.displayWidth = barradevida.displayWidth - enemigoDamage
+						barradevida.x = barradevida.x - enemigoDamage/2
 				
-				vidaenemigo = vidaenemigo + enemigoDamage
-				barradevida2.displayWidth = barradevida2.displayWidth + enemigoDamage
-				barradevida2.x = barradevida2.x - enemigoDamage/2
+						vidaenemigo = vidaenemigo + enemigoDamage
+						barradevida2.displayWidth = barradevida2.displayWidth + enemigoDamage
+						barradevida2.x = barradevida2.x - enemigoDamage/2
 
-				}
+					}
 				
-				if (vidaenemigo > 258) {
-				barradevida2.displayWidth = 258
-				barradevida2.x = 675
-				vidaenemigo = 258
-				}
+					if (vidaenemigo > 258) {
+						barradevida2.displayWidth = 258
+						barradevida2.x = 675
+						vidaenemigo = 258
+					}
 
-				if (vidajugador <= 0) {
-				contexto.scene.start("derrota");
-				}
+					if (vidajugador <= 0) {
+						contexto.scene.start("derrota");
+					}
 
-				sprite3.play({ key: 'idle2', repeat: -1 })
+					sprite3.play({ key: 'idle2', repeat: -1 })
+					spritevida.setFrame(3)
 
-				spritevida.setFrame(3)
-
-		
-				setTimeout (function cambioTurno () {
-					sprite.play({ key: 'idle', repeat: -1 });
-					turno = turno + 1
-					spritevida.setFrame(0)
-					bloqueo = 0
-					robarCarta();
+					setTimeout (function cambioTurno () {
+						sprite.play({ key: 'idle', repeat: -1 });
+						turno = turno + 1
+						spritevida.setFrame(0)
+						bloqueo = 0
+						robarCarta();
 					},500)
 					
 		
 				},3000)
 
 			},500)
-			},2000)	
+		},2000)	
 
 		}})
-		cartas.push(carta);
-			
+
+		cartas.push(carta);		
 		}
 
 		function robarCarta() {
@@ -385,13 +376,13 @@ export default class NivelMago extends Phaser.Scene
 					sprite3.play({ key: 'hit', repeat: 0 });
 
 					if (vidajugador > 258) {
-					barradevida.displayWidth = 258
-					barradevida.x = 339
-					vidajugador = 258
+						barradevida.displayWidth = 258
+						barradevida.x = 339
+						vidajugador = 258
 					}
 
 					if (vidaenemigo <= 0) {
-					contexto.scene.start("victoria");
+						contexto.scene.start("victoria");
 					}
 			
 					cartas[i].sprite.destroy()
@@ -403,34 +394,33 @@ export default class NivelMago extends Phaser.Scene
 			
 						if (accionEnemigo == 0) {sprite3.play({ key: 'atk1', repeat: 0 });}
 						else if (accionEnemigo == 1) {sprite3.play({ key: 'atk1', repeat: 0 });}
-
 			
 							setTimeout (function ataqueEnemigo () {
 							
 							sprite.play({ key: 'hit1', repeat: 0 });
 				
 							if (accionEnemigo == 0) {
-							vidajugador = vidajugador - enemigoDamage * 1.5
-							barradevida.displayWidth = barradevida.displayWidth - enemigoDamage * 1.5
-							barradevida.x = barradevida.x - (enemigoDamage* 1.5)/2
+								vidajugador = vidajugador - enemigoDamage * 1.5
+								barradevida.displayWidth = barradevida.displayWidth - enemigoDamage * 1.5
+								barradevida.x = barradevida.x - (enemigoDamage* 1.5)/2
 							} else {
-							vidajugador = vidajugador - enemigoDamage
-							barradevida.displayWidth = barradevida.displayWidth - enemigoDamage
-							barradevida.x = barradevida.x - enemigoDamage/2
+								vidajugador = vidajugador - enemigoDamage
+								barradevida.displayWidth = barradevida.displayWidth - enemigoDamage
+								barradevida.x = barradevida.x - enemigoDamage/2
 								
-							vidaenemigo = vidaenemigo + enemigoDamage
-							barradevida2.displayWidth = barradevida2.displayWidth + enemigoDamage
-							barradevida2.x = barradevida2.x - enemigoDamage/2
+								vidaenemigo = vidaenemigo + enemigoDamage
+								barradevida2.displayWidth = barradevida2.displayWidth + enemigoDamage
+								barradevida2.x = barradevida2.x - enemigoDamage/2
 							}
 
 							if (vidaenemigo > 258) {
-							barradevida2.displayWidth = 258
-							barradevida2.x = 675
-							vidaenemigo = 258
+								barradevida2.displayWidth = 258
+								barradevida2.x = 675
+								vidaenemigo = 258
 							}
 						
 							if (vidajugador <= 0) {
-							contexto.scene.start("derrota");
+								contexto.scene.start("derrota");
 							}
 							spritevida.setFrame(3)
 							sprite3.play({ key: 'idle2', repeat: -1 });
@@ -441,18 +431,17 @@ export default class NivelMago extends Phaser.Scene
 								spritevida.setFrame(0)
 								bloqueo = 0
 								robarCarta();
-								},500)
+							},500)
 								
 					
-							},3000)
+						},3000)
 			
-						},500)
-						},2000)	
+					},500)
+				},2000)	
 			}})
 				cartas[i].estado = 1
 			}}
-			}
-		
+		}
 		
 		//TUTORIAL
 
@@ -466,8 +455,8 @@ export default class NivelMago extends Phaser.Scene
 			Tuto.y = this.cameras.main.centerY
 			Black.y = this.cameras.main.centerY
 		} else {
-		Tuto.y = 1000
-		Black.y = 2000
+			Tuto.y = 1000
+			Black.y = 2000
 		}
 		}); 
 	

@@ -21,11 +21,11 @@ export class MainMenu extends Phaser.Scene {
             key: 'bg',
             frames: this.anims.generateFrameNumbers('escalera_bg_sprite', {start: 0, end: 113}),
             frameRate: 30
-            })
+        })
     
-            const sprite = this.add.sprite(this.cameras.main.centerX ,this.cameras.main.centerY, 'escalera_bg_sprite').setScale(1.95);
+        const sprite = this.add.sprite(this.cameras.main.centerX ,this.cameras.main.centerY, 'escalera_bg_sprite').setScale(1.95);
     
-            sprite.play({ key: 'bg', repeat: -1 });
+        sprite.play({ key: 'bg', repeat: -1 });
 
 
         this.add.image(this.cameras.main.centerX, this.cameras.main.centerY/1.5, 'escalera_logo');
@@ -38,7 +38,7 @@ export class MainMenu extends Phaser.Scene {
         let botonidioma = this.add.image(this.cameras.main.centerX ,this.cameras.main.centerY*1.5, "escalera_btnidioma").setScale(1.2);
         botonidioma.setInteractive()
         botonidioma.on("pointerdown", (pointer, localX, localY) => {
-            this.scene.start("Idiomas");});
+        this.scene.start("Idiomas");});
 
     }
 }
