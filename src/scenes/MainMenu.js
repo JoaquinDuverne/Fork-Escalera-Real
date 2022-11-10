@@ -40,5 +40,20 @@ export class MainMenu extends Phaser.Scene {
         botonidioma.on("pointerdown", (pointer, localX, localY) => {
         this.scene.start("Idiomas");});
 
+        let Black = this.add.image(this.cameras.main.centerX, 2000, 'black').setScale(0.4);
+		let Cred = this.add.image(this.cameras.main.centerX, 1000, 'creditos').setScale(0.25);
+
+		let Libro = this.add.image(950, 580, 'libro_creditos').setScale(0.8);
+		Libro.setInteractive();
+		Libro.on("pointerdown", (pointer, localX, localY) => {
+		if (Cred.y == 1000) {
+			Cred.y = this.cameras.main.centerY
+			Black.y = this.cameras.main.centerY
+		} else {
+			Cred.y = 1000
+			Black.y = 2000
+		}
+		}); 
+
     }
 }
