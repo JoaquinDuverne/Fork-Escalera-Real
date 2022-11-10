@@ -41,6 +41,7 @@ export class Preload extends Phaser.Scene
 		this.load.image("escalera_nivel2_lock", "assets/escalera_nivel2_lock.png");
 		this.load.image("eeuu", "assets/eeuu.png");
 		this.load.image("esp", "assets/arg.png");
+		this.load.image("tutorial", "assets/tutorial.png");
 	
 		//BOTONES
 		this.load.image("escalera_btncreditos", "assets/btn_creditos.png");
